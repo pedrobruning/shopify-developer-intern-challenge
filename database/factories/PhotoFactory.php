@@ -22,7 +22,11 @@ class PhotoFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'path' => $this->faker->randomElement(['imgs/pedroOne.jpg', 'imgs/pedroTwo.jpg', 'imgs/pedroThree.jpg']),
+            'title' => $this->faker->text(15),
+            'description' => $this->faker->realText(),
+            'price' => $this->faker->numberBetween(20000, 120000),
+            'discount' => $this->faker->numberBetween(0,19900)
         ];
     }
 }
