@@ -14,7 +14,9 @@ class PhotoController extends Controller
      */
     public function index()
     {
-        //
+        $photos = Photo::query()->with('user')->where('private', 0)->paginate(28);
+
+        return view('photos.index', compact('photos'));
     }
 
     /**

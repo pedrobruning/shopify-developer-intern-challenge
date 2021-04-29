@@ -29,4 +29,9 @@ class Photo extends Model
         return $this->belongsToMany(Category::class);
     }
 
+    public function getDiscountPercentageAttribute()
+    {
+        return number_format(($this->discount) / ($this->price / 100));
+    }
+
 }
