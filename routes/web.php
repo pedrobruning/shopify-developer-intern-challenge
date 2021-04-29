@@ -21,4 +21,8 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+Route::group(["middleware" => "auth"], function() {
+    Route::resource('photos', \App\Http\Controllers\PhotoController::class);
+});
+
 require __DIR__.'/auth.php';
