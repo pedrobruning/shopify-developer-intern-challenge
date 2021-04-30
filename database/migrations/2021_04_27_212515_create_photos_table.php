@@ -19,8 +19,8 @@ class CreatePhotosTable extends Migration
             $table->string('path');
             $table->string('title');
             $table->text('description');
-            $table->integer('price');
-            $table->integer('discount')->default(0);
+            $table->bigInteger('price');
+            $table->bigInteger('discount')->default(0);
             $table->boolean('private')->default(0);
             $table->boolean('bought')->default(0);
             $table->timestamps();
