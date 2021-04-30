@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PhotoRequest;
 use App\Models\Photo;
 use Illuminate\Http\Request;
 
@@ -9,35 +10,52 @@ class PhotoController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * This method redirects to a view.
      */
     public function index()
     {
         $photos = Photo::query()->with('user')->where('private', 0)->paginate(28);
+        return view('photos.index', compact('photos'));
+    }
+
+    public function personalDashboard()
+    {
+        $photos = auth()->user()->photos()->paginate(28);
 
         return view('photos.index', compact('photos'));
     }
 
     /**
      * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * This method redirects to a view.
      */
     public function create()
     {
-        //
+        return view('photos.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  PhotoRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PhotoRequest $request)
     {
-        //
+        $file = $request->file('file');
+
+        $filename = str_replace(' ','_', $file->getClientOriginalName());
+
+        auth()->user()->photos()->create([
+            'title' => $request->title,
+            'description' => $request->description,
+            'price' => $request->price,
+            'discount' => $request->discount,
+            'private' => $request->private,
+            'path' => "storage/" . $file->storeAs('photos/' . auth()->id(), $filename, 'public')
+        ]);
+
+        return redirect()->route('photos.index');
     }
 
     /**
