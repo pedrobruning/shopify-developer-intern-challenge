@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\PhotoController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,12 +17,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
-
 Route::group(["middleware" => "auth"], function() {
-    Route::resource('photos', \App\Http\Controllers\PhotoController::class);
+    Route::resource('photos', PhotoController::class);
+    Route::get('/dashboard', [PhotoController::class, 'personalDashboard'])->name('dashboard');
 });
 
 require __DIR__.'/auth.php';
