@@ -20,6 +20,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'balance'
     ];
 
     /**
@@ -46,14 +47,14 @@ class User extends Authenticatable
         return $this->hasMany(Photo::class);
     }
 
-    public function sells()
+    public function sales()
     {
-        return $this->hasMany(Sell::class);
+        return $this->hasMany(Sale::class, 'seller_id', 'id');
     }
 
-    public function buys()
+    public function purchases()
     {
-        return $this->hasMany(Buy::class);
+        return $this->hasMany(Purchase::class, 'buyer_id', 'id');
     }
 
 }

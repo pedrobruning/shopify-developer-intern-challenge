@@ -13,13 +13,11 @@ use App\Http\Controllers\PhotoController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::group(["middleware" => "auth"], function() {
     Route::resource('photos', PhotoController::class);
-    Route::get('/dashboard', [PhotoController::class, 'personalDashboard'])->name('dashboard');
+    Route::get('/', [PhotoController::class, 'personalDashboard'])->name('dashboard');
+    Route::get('photos/buy/{photo}', [\App\Http\Controllers\FinancialController::class, 'manageFinancialTransactions'])->name('photos.buy');
+    Route::get('sales', [\App\Http\Controllers\SaleController::class, 'index'])->name('sales.index');
 });
 
 require __DIR__.'/auth.php';

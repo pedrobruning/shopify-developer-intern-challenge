@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Photo;
+use App\Models\User;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
@@ -25,6 +27,12 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
+        Gate::define('manage-photo', function(User $user, Photo $photo) {
+            return $user->id === $photo->user_id && $photo->bought === 0;
+        });
+        Gate::define('delete-photo', function(User $user, Photo $photo) {
+            return $photo->sales()->count() <= 0;
+        });
         //
     }
 }

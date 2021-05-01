@@ -26,7 +26,7 @@
                                                     </div>
                                                     <div>
                                                         <label class="inline-flex items-center">
-                                                            <input type="radio" class="form-radio" id="private" name="private" value="0">
+                                                            <input type="radio" class="form-radio" id="private" name="private" value="0" checked>
                                                             <span class="ml-2">Public</span>
                                                         </label>
                                                     </div>
@@ -108,17 +108,13 @@
     <script language="JavaScript" type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script language="JavaScript" type="text/javascript" src="{{ asset('js/jquery.inputmask.js') }}"></script>
     <script>
-        const valueInputMask = new Inputmask("(.999){+|1},00", {
-            positionCaretOnClick: "radixFocus",
-            radixPoint: ",",
-            _radixDance: true,
-            numericInput: true,
-            placeholder: "0",
-            definitions: {
-                "0": {
-                    validator: "[0-9\uFF11-\uFF19]"
-                }
-            }
+        const valueInputMask = new Inputmask('decimal', {
+            'alias': 'numeric',
+            'groupSeparator': '.',
+            'digits': 2,
+            'radixPoint': ",",
+            'allowMinus': false,
+            'placeholder': ''
         });
 
         $(document).ready(function(){
