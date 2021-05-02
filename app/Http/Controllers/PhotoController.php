@@ -116,8 +116,8 @@ class PhotoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Photo  $photo
-     * @return \Illuminate\Http\Response
+     * @param  Photo  $photo
+     * @return RedirectResponse
      */
     public function destroy(Photo $photo)
     {
@@ -126,11 +126,6 @@ class PhotoController extends Controller
         $this->removePhotoFile($photo->path);
         $photo->delete();
         return redirect()->route('dashboard');
-    }
-
-    public function buy(Photo $photo)
-    {
-
     }
 
     /**
