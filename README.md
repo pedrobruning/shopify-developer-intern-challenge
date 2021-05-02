@@ -4,6 +4,7 @@ Build an image repository.
 > This repository was made for Shopify Developer Intern Challenge.
 # Installation
 > 1. Create a .env file using the .env.exemple
+>>      1. **You need to fill the database fields correctly.**
 > 2. `composer install`
 > 3. `npm install`
 > 3. `npm run dev`
