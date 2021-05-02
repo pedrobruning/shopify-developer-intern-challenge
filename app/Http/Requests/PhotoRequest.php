@@ -54,8 +54,16 @@ class PhotoRequest extends FormRequest
     protected function prepareForValidation()
     {
         $this->merge([
-            'price' => intval(number_format(floatval($this->price), 2, '', '')),
-            'discount' => intval(number_format(floatval($this->discount), 2, '', '')),
+            'price' => $this->adapterNumber($this->price),
+            'discount' => $this->adapterNumber($this->discount),
         ]);
+    }
+
+    private function adapterNumber(string $number) : int
+    {
+        $result = str_replace('.', '', $number);
+        $result = str_replace(',', '', $result);
+
+        return intval($result);
     }
 }

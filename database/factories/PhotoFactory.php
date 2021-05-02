@@ -23,11 +23,15 @@ class PhotoFactory extends Factory
     {
         return [
             'path' => $this->faker->randomElement([
-                'storage/photos/seeds/pedroOne.jpg',
-                'storage/photos/seeds/pedroTwo.jpg',
-                'storage/photos/seeds/pedroThree.jpg'
+                'https://www.lance.com.br/files/article_main/uploads/2020/10/14/5f877029190dc.jpeg',
+                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeM90-vw6cIu7SrPOD6eAyEvW8lCgBLRU0og&usqp=CAU',
+                'https://static-wp-tor15-prd.torcedores.com/wp-content/uploads/2020/11/neymar-jr-10.jpeg'
             ]),
-            'original_name' => $this->faker->randomElement(['pedroOne.jpg', 'pedroTwo.jpg', 'pedroThree.jpg']),
+            'original_name' => $this->faker->randomElement([
+                'neymarBigPlayerOne.jpg',
+                'neymarBigPlayerTwo.jpg',
+                'neymarBigPlayerThree.jpg'
+            ]),
             'title' => $this->faker->text(15),
             'description' => $this->faker->realText(),
             'price' => $this->faker->numberBetween(20000, 120000),

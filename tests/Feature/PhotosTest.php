@@ -59,40 +59,4 @@ class PhotosTest extends TestCase
         $response->assertSee('Buy');
     }
 
-    public function test_user_cant_buy_without_balance()
-    {
-        $this->seedPhotos();
-        $photo = Photo::create([
-            'user_id' => 10,
-            'artist_id' => 10,
-            'price' => 301000,
-            'title' => 'Most Expensive Photo',
-            'description' => 'Here you see the most expensive photo, that you can not afford',
-            'path' => 'storage/photos/seeds/pedroOne.jpg',
-            'original_name' => 'pedroOne.jpg'
-        ]);
-
-        $response = $this->actingAs($this->user)->get('photos/buy/' . $photo->id);
-        $response->assertSessionHasErrors();
-    }
-
-    public function test_user_can_buy_with_balance()
-    {
-        $this->seedPhotos();
-        $photo = Photo::create([
-            'user_id' => 10,
-            'artist_id' => 10,
-            'price' => 1000,
-            'title' => 'Most Expensive Photo',
-            'description' => 'Here you see the most expensive photo, that you can not afford',
-            'path' => 'storage/photos/seeds/pedroOne.jpg',
-            'original_name' => 'pedroOne.jpg'
-        ]);
-
-        $response = $this->actingAs($this->user)->get('photos/buy/' . $photo->id);
-        $response->assertRedirect('/');
-        $response->assertSessionHasNoErrors();
-        $this->followRedirects($response)->assertSee("Bought");
-    }
-
 }

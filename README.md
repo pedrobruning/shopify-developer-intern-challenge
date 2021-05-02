@@ -5,8 +5,10 @@ Build an image repository.
 # Installation
 > 1. Create a .env file using the .env.exemple
 > 2. `composer install`
+> 3. `npm install`
 > 3. `npm run dev`
 > 4. `php artisan key:generate`
+> 5. `php artisan storage:link`
 ## Database Migrating and Seeding 
 > 1. `php artisan migrate --seed`
 >> Now your database is ready and with some data.

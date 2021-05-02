@@ -36,7 +36,7 @@ class Photo extends Model
 
     public function getDiscountPercentageAttribute()
     {
-        return number_format(($this->discount) / ($this->price / 100));
+        return number_format(($this->discount) / ($this->price / 100), 1);
     }
 
     public function getTotalPriceAttribute()
