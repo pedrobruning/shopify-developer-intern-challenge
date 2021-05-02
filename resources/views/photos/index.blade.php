@@ -67,11 +67,18 @@
                                             </div>
                                         </a>
                                     @endcan
-                                @else
+                                @elseif($photo->bought === 1 && $photo->private === 1)
                                     <div style="background-color: blue" class="text-white text-xs uppercase font-bold
                                     rounded-full p-2 absolute right-0 top-0 mr-2 mt-2">
                                         <span>
                                             Bought
+                                        </span>
+                                    </div>
+                                @else
+                                    <div style="background-color: red" class="text-white text-xs uppercase font-bold
+                                    rounded-full p-2 absolute right-0 top-0 mr-2 mt-2">
+                                        <span>
+                                            Not for sale!
                                         </span>
                                     </div>
                                 @endif

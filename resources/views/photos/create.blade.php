@@ -16,7 +16,7 @@
                                     <div class="shadow sm:rounded-md sm:overflow-hidden">
                                         <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
                                             <div class="block">
-                                                <span class="text-gray-700">Photo Visibility</span>
+                                                <span class="text-gray-700">Photo Visibility <span class="text-sm text-red-500">*</span></span>
                                                 <div class="mt-2">
                                                     <div>
                                                         <label class="inline-flex items-center">
